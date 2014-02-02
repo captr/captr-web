@@ -7,4 +7,4 @@ Feature: Captr editing
     Given I want to create a new captr
     When I put down a script into sections
     And I associate to each of them a media
-    Then I can see the video preview
+    Then I see the video preview
