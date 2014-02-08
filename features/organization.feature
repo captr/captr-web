@@ -6,7 +6,7 @@ Feature: Organization
   Scenario: User creates an organization
     Given I am an authenticated user
     When I create an organization
-    Then it gets added to my organizations list
+    Then it gets added to my organizations
     And I become part of the organization
 
   Scenario: User adds members to an organization
@@ -25,4 +25,4 @@ Feature: Organization
     Given I am an authenticated user
     And I am part of an organization
     When I delete it
-    Then it gets removed from my organizations list
+    Then it gets removed from members' organizations
