@@ -31,8 +31,17 @@ module.exports = function (grunt) {
                 files: '<%= yeoman.app %>/templates/**/*.hbs',
                 tasks: ['emberTemplates']
             },
+            coffee: {
+                files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
+                tasks: ['coffee:dist']
+            },
+            coffeeTest: {
+                files: ['test/spec/{,*/}*.coffee'],
+                tasks: ['coffee:test']
+            },
             neuter: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['.tmp/scripts/{,*/}*.js',
+                        '!.tmp/scripts/combined-scripts.js'],
                 tasks: ['neuter']
             },
             livereload: {
@@ -120,6 +129,26 @@ module.exports = function (grunt) {
                     run: true,
                     urls: ['http://localhost:<%= connect.options.port %>/index.html']
                 }
+            }
+        },
+        coffee: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/scripts',
+                    src: '{,*/}*.coffee',
+                    dest: '.tmp/scripts',
+                    ext: '.js'
+                }]
+            },
+            test: {
+                files: [{
+                    expand: true,
+                    cwd: 'test/spec',
+                    src: '{,*/}*.coffee',
+                    dest: '.tmp/spec',
+                    ext: '.js'
+                }]
             }
         },
         // not used since Uglify task does concat,
@@ -270,16 +299,24 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'emberTemplates',
+                'coffee:dist',
             ],
             test: [
                 'emberTemplates',
+                'coffee',
             ],
             dist: [
                 'emberTemplates',
+                'coffee',
                 'imagemin',
                 'svgmin',
                 'htmlmin'
             ]
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         },
         emberTemplates: {
             options: {
@@ -297,11 +334,12 @@ module.exports = function (grunt) {
         neuter: {
             app: {
                 options: {
+                    template: "{%= src %}",
                     filepathTransform: function (filepath) {
-                        return yeomanConfig.app + '/' + filepath;
+                        return '.tmp/' + filepath;
                     }
                 },
-                src: '<%= yeoman.app %>/scripts/app.js',
+                src: ['.tmp/scripts/app.js'],
                 dest: '.tmp/scripts/combined-scripts.js'
             }
         }
@@ -335,7 +373,7 @@ module.exports = function (grunt) {
         'concurrent:test',
         'connect:test',
         'neuter:app',
-        'mocha'
+        'karma'
     ]);
 
     grunt.registerTask('build', [

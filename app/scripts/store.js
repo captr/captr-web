@@ -1,1 +1,0 @@
-CaptrWeb.ApplicationAdapter = DS.FixtureAdapter;
