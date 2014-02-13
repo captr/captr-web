@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Preparing the awesome..."
+
+echo -n "Installing required node packages... "
+npm install &> /dev/null
+echo "Done."
+
+echo -n "Installing javascript dependencies... "
+bower install --silent
+cd test/
+bower install --silent
+cd ..
+echo "Done."
