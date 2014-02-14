@@ -8,6 +8,9 @@ echo "Done."
 
 echo -n "Installing javascript dependencies... "
 bower install --silent
+echo "Done."
+
+echo -n "Installing testing framework... "
 cd test/
 bower install --silent
 cd ..
