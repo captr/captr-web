@@ -1,5 +1,7 @@
-Feature: Sign up for a new account
-  This is the process for creating new accounts
+Feature: Authentication
+  Most of the features require having an account
+  To benefit from these features users must be signed in into their accounts
+  Users should not be able to sign in unless they have an account
   Users can create new accounts with their social network profiles
 
   Background:
