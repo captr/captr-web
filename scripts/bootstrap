@@ -3,6 +3,7 @@
 echo "Preparing the awesome..."
 
 echo -n "Installing required node packages... "
+npm install -g grunt-cli &> /dev/null
 npm install &> /dev/null
 echo "Done."
 
