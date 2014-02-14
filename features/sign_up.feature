@@ -4,21 +4,24 @@ Feature: Sign up for a new account
 
   Background:
     Given I am currently not signed in
-# TODO: discuss step below:
-#       1. should it be there?
-#       2. see "the social network" usage.
-      # And I current have at least one profile on various social networks
 
-  Scenario: Sign up for the first time
-    When I am a new user
-     And I successfully authenticate with the social network
-    Then I should get a new account
+  Scenario: User signs up for the first time
+    Given I am a new user
+     When I successfully authenticate with the social network
+      And I choose an unique username
+     Then I should get a new account
 
-  Scenario: Try to sign up again
-    When I am an existing user
-     And I successfully authenticate with the social network
-    Then I should get back my previous account
+  Scenario: User signs up with conflicting username
+    Given I am a new user
+     When I successfully authenticate with the social network
+      And I choose an existing username
+     Then I should be prompted to try another username
 
-  Scenario: Cannot sign up
-    When I fail authenticating with the social network
-    Then I should get an authentication error
+  Scenario: User signs up again
+    Given I am an existing user
+     When I successfully authenticate with the social network
+     Then I should get back my previous account
+
+  Scenario: User cancels sign up
+    When I cancel authentication with the social network
+    Then Nothing should happen
