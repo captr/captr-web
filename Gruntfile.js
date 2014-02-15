@@ -36,23 +36,13 @@ module.exports = function (grunt) {
                 tasks: ['coffee:dist']
             },
             coffeeTest: {
-                files: ['test/{,*/}*.coffee'],
+                files: ['test/spec/{,*/}*.coffee'],
                 tasks: ['coffee:test']
             },
             neuter: {
                 files: ['.tmp/scripts/{,*/}*.js',
                         '!.tmp/scripts/combined-scripts.js'],
                 tasks: ['neuter']
-            },
-            karma: {
-                files: [
-                    '.tmp/scripts/*.js',
-                    '<%= yeoman.app %>/*.html',
-                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                    'test/{,*/}*.coffee'
-                ],
-                tasks: ['karma:continuous']
             },
             livereload: {
                 options: {
@@ -276,13 +266,13 @@ module.exports = function (grunt) {
         copy: {
             fonts: {
                 files: [
-                    {
+                    { 
                         expand: true,
                         flatten: true,
                         filter: 'isFile',
                         cwd: '<%= yeoman.app %>/bower_components/',
                         dest: '<%= yeoman.app %>/styles/fonts/',
-                        src: [
+                        src: [ 
                             'bootstrap-sass/dist/fonts/**', // Bootstrap
                             'font-awesome/fonts/**' // Font-Awesome
                         ]
@@ -325,14 +315,7 @@ module.exports = function (grunt) {
         },
         karma: {
             unit: {
-                configFile: 'karma.conf.js',
-                singleRun: true,
-                browsers: ['PhantomJS']
-            },
-            continuous: {
-                configFile: 'karma.conf.js',
-                singleRun: true,
-                browsers: ['PhantomJS']
+                configFile: 'karma.conf.js'
             }
         },
         emberTemplates: {
@@ -390,8 +373,7 @@ module.exports = function (grunt) {
         'concurrent:test',
         'connect:test',
         'neuter:app',
-        'karma:continuous',
-        'watch'
+        'karma'
     ]);
 
     grunt.registerTask('build', [
