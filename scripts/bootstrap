@@ -11,8 +11,12 @@ echo -n "Installing javascript dependencies... "
 bower install --silent
 echo "Done."
 
-echo -n "Installing testing framework... "
+echo -n "Installing unit testing environment... "
 cd test/
 bower install --silent
 cd ..
+
+echo -n "Installing feature testing environment... "
+bundle install --path vendor/gems --binstubs
+
 echo "Done."

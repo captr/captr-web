@@ -7,13 +7,11 @@ should = chai.should()
 
 chai.Assertion.includeStack = true
 
-Ember.testing = true
 CaptrWeb.rootElement = "#ember-testing"
 Ember.Test.adapter = Ember.Test.MochaAdapter.create()
 
 CaptrWeb.setupForTesting()
 CaptrWeb.injectTestHelpers()
-Ember.run CaptrWeb, CaptrWeb.advanceReadiness
 
 window.start = ->
 window.stop = ->

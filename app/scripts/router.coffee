@@ -1,2 +1,2 @@
-CaptrWeb.Router ->
-  # Add your routes here
+CaptrWeb.Router.map ->
+
