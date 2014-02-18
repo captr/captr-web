@@ -28,8 +28,7 @@ module.exports = function(config) {
       '.tmp/scripts/combined-scripts.js',
       '.tmp/scripts/compiled-templates.js',
       'test/support/*.coffee',
-      'test/spec/*.coffee',
-      'test/integration/*.coffee'
+      'test/spec/*.coffee'
     ],
 
 
@@ -86,7 +85,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode.
     // If it's `true`, then it captures browsers, runs the tests and exits.
-    singleRun : true
+    singleRun : false
 
   });
 
