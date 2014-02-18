@@ -27,8 +27,8 @@ module.exports = function(config) {
 
       '.tmp/scripts/combined-scripts.js',
       '.tmp/scripts/compiled-templates.js',
-      'test/support/*.coffee',
-      'test/spec/*.coffee'
+      'test/support/**/*.coffee',
+      'test/spec/**/*.coffee'
     ],
 
 
