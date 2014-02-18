@@ -371,7 +371,6 @@ module.exports = function (grunt) {
         'clean:server',
         'replace:app',
         'concurrent:test',
-        'connect:test',
         'neuter:app',
         'karma'
     ]);
